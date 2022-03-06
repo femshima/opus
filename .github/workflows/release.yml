@@ -116,7 +116,7 @@ jobs:
         run: |
           curl -OL https://musl.cc/aarch64-linux-musl-cross.tgz
           tar -xzvf aarch64-linux-musl-cross.tgz
-          export PATH=$PATH:$(pwd)/aarch64-linux-musl-cross/bin
+          cp aarch64-linux-musl-cross/bin/* /usr/bin
           aarch64-linux-musl-gcc --version
 
       - name: Install dependencies
