@@ -116,7 +116,7 @@ jobs:
         run: |
           curl -OL https://musl.cc/aarch64-linux-musl-cross.tgz
           tar -xzvf aarch64-linux-musl-cross.tgz
-          aarch64-linux-musl-gcc --version
+          $(pwd)/aarch64-linux-musl-cross/bin/aarch64-linux-musl-gcc --version
 
       - name: Install dependencies
         run: npm install --unsafe-perm --build-from-source
