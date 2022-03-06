@@ -112,18 +112,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Setup musl cross compoiler
-        run: |
-          curl -OL https://musl.cc/aarch64-linux-musl-cross.tgz
-          tar -xzvf aarch64-linux-musl-cross.tgz
-          cp aarch64-linux-musl-cross/bin/* /usr/bin
-          aarch64-linux-musl-gcc --version
-
       - name: Install dependencies
         run: npm install --unsafe-perm --build-from-source
 
       - name: Package prebuild
-        run: CC=aarch64-linux-musl-gcc CXX=aarch64-linux-musl-g++ npx node-pre-gyp --target_arch=arm64 configure build package
+        run: |
+          curl -OL https://musl.cc/aarch64-linux-musl-cross.tgz
+          tar -xzvf aarch64-linux-musl-cross.tgz
+          aarch64-linux-musl-cross/bin/aarch64-linux-musl-gcc --version
+          CC=aarch64-linux-musl-cross/bin/aarch64-linux-musl-gcc \
+          CXX=aarch64-linux-musl-cross/bin/aarch64-linux-musl-g++ \
+          npx node-pre-gyp --target_arch=arm64 configure build package
 
       - name: Upload prebuild asset
         uses: icrawl/action-artifact@v2
