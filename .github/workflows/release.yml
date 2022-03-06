@@ -113,8 +113,8 @@ jobs:
         run: |
           curl -OL https://musl.cc/aarch64-linux-musl-cross.tgz
           tar -xzvf aarch64-linux-musl-cross.tgz
-          export PATH="${HOME}/aarch64-linux-musl-cross/bin:${PATH}"
-          ls ${HOME}/aarch64-linux-musl-cross/bin
+          export PATH=$PATH:$(pwd)/aarch64-linux-musl-cross/bin
+          echo $(pwd)/aarch64-linux-musl-cross/bin
 
       - name: Checkout repository
         uses: actions/checkout@v2
