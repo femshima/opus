@@ -113,6 +113,8 @@ jobs:
         run: |
           git clone https://github.com/richfelker/musl-cross-make.git
           cd musl-cross-make
+          cp config.mak.dist config.mak
+          echo "TARGET=aarch64-linux-musl">config.mak
           make
           make install
 
