@@ -114,7 +114,8 @@ jobs:
           curl -OL https://musl.cc/aarch64-linux-musl-cross.tgz
           tar -xzvf aarch64-linux-musl-cross.tgz
           export PATH=$PATH:$(pwd)/aarch64-linux-musl-cross/bin
-          echo $(pwd)/aarch64-linux-musl-cross/bin
+          ls $(pwd)/aarch64-linux-musl-cross/bin
+          aarch64-linux-musl-gcc --version
 
       - name: Checkout repository
         uses: actions/checkout@v2
