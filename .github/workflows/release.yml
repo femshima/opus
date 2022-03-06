@@ -111,12 +111,8 @@ jobs:
 
       - name: Setup musl cross compoiler
         run: |
-          git clone https://github.com/richfelker/musl-cross-make.git
-          cd musl-cross-make
-          cp config.mak.dist config.mak
-          echo "TARGET=aarch64-linux-musl">config.mak
-          make
-          make install
+          curl -OL https://musl.cc/aarch64-linux-musl-cross.tgz
+          tar -xzvf aarch64-linux-musl-cross
 
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -125,7 +121,7 @@ jobs:
         run: npm install --unsafe-perm --build-from-source
 
       - name: Package prebuild
-        run: CC=aarch64-linux-musl-gcc CXX=aarch64-linux-musl-g++ node-pre-gyp --target_arch=arm64 configure build package
+        run: CC=aarch64-linux-musl-cross/bin/aarch64-linux-musl-gcc CXX=aarch64-linux-musl-cross/bin/aarch64-linux-musl-g++ node-pre-gyp --target_arch=arm64 configure build package
 
       - name: Upload prebuild asset
         uses: icrawl/action-artifact@v2
