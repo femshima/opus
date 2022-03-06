@@ -109,16 +109,15 @@ jobs:
           apk add --update
           apk add --no-cache ca-certificates git curl build-base python3 g++ make
 
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
       - name: Setup musl cross compoiler
         run: |
           curl -OL https://musl.cc/aarch64-linux-musl-cross.tgz
           tar -xzvf aarch64-linux-musl-cross.tgz
           export PATH=$PATH:$(pwd)/aarch64-linux-musl-cross/bin
-          ls $(pwd)/aarch64-linux-musl-cross/bin
           aarch64-linux-musl-gcc --version
-
-      - name: Checkout repository
-        uses: actions/checkout@v2
 
       - name: Install dependencies
         run: npm install --unsafe-perm --build-from-source
