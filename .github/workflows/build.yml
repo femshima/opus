@@ -20,16 +20,16 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      
-      - name: Setup node-gyp
-        run: |
-          npm -g install node-gyp@9.4.1
-          python3 -m pip install packaging
 
       - name: Install Node v${{ matrix.node }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
+      
+      - name: Setup node-gyp
+        run: |
+          npm -g install node-gyp@9.4.1
+          python3 -m pip install packaging
 
       - name: Install dependencies
         run: npm install --build-from-source
@@ -48,14 +48,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Setup node-gyp
-        run: |
-          npm -g install node-gyp@9.4.1
-          python3 -m pip install packaging
       - name: Install Node v${{ matrix.node }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
+      - name: Setup node-gyp
+        run: |
+          npm -g install node-gyp@9.4.1
+          python3 -m pip install packaging
 
       - name: Install dependencies
         run: npm install --build-from-source
@@ -104,15 +104,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup node-gyp
-        run: |
-          npm -g install node-gyp@9.4.1
-          python3 -m pip install packaging
-
       - name: Install Node v${{ matrix.node }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
+
+      - name: Setup node-gyp
+        run: |
+          npm -g install node-gyp@9.4.1
+          python3 -m pip install packaging
 
       - name: Install dependencies
         run: npm install --build-from-source
@@ -134,15 +134,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup node-gyp
-        run: |
-          npm -g install node-gyp@9.4.1
-          python3 -m pip install packaging
-
       - name: Install Node v${{ matrix.node }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
+
+      - name: Setup node-gyp
+        run: |
+          npm -g install node-gyp@9.4.1
+          python3 -m pip install packaging
 
       - name: Install dependencies
         run: npm install --build-from-source
