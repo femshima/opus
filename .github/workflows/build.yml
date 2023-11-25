@@ -20,6 +20,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+      
+      - name: Install gyp-next
+        run: pip install gyp-next
 
       - name: Install Node v${{ matrix.node }}
         uses: actions/setup-node@v3
@@ -43,7 +46,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
+      - name: Install gyp-next
+        run: pip install gyp-next
       - name: Install Node v${{ matrix.node }}
         uses: actions/setup-node@v3
         with:
@@ -70,6 +74,9 @@ jobs:
           apk add --update
           apk add --no-cache ca-certificates git curl build-base python3 g++ make
 
+      - name: Install gyp-next
+        run: pip install gyp-next
+
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -90,6 +97,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Install gyp-next
+        run: pip install gyp-next
 
       - name: Install Node v${{ matrix.node }}
         uses: actions/setup-node@v3
@@ -115,6 +125,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Install gyp-next
+        run: pip install gyp-next
 
       - name: Install Node v${{ matrix.node }}
         uses: actions/setup-node@v3
@@ -143,6 +156,9 @@ jobs:
         run: |
           apk add --update
           apk add --no-cache ca-certificates git curl build-base python3 g++ make
+
+      - name: Install gyp-next
+        run: pip install gyp-next
 
       - name: Checkout repository
         uses: actions/checkout@v3
