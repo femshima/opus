@@ -26,10 +26,9 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       
-      - name: Setup node-gyp
-        run: |
-          npm -g install node-gyp@9.4.1
-          python3 -m pip install packaging
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
 
       - name: Install dependencies
         run: npm install --build-from-source
@@ -55,7 +54,7 @@ jobs:
       - name: Setup node-gyp
         run: |
           npm -g install node-gyp@9.4.1
-          python3 -m pip install packaging
+          python3 -m pip install setuptools
 
       - name: Install dependencies
         run: npm install --build-from-source
@@ -77,11 +76,6 @@ jobs:
         run: |
           apk add --update
           apk add --no-cache ca-certificates git curl build-base python3 g++ make
-
-      - name: Setup node-gyp
-        run: |
-          npm -g install node-gyp@9.4.1
-          python3 -m pip install packaging
 
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -109,10 +103,9 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
-      - name: Setup node-gyp
-        run: |
-          npm -g install node-gyp@9.4.1
-          python3 -m pip install packaging
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
 
       - name: Install dependencies
         run: npm install --build-from-source
@@ -142,7 +135,7 @@ jobs:
       - name: Setup node-gyp
         run: |
           npm -g install node-gyp@9.4.1
-          python3 -m pip install packaging
+          python3 -m pip install setuptools
 
       - name: Install dependencies
         run: npm install --build-from-source
@@ -166,11 +159,6 @@ jobs:
         run: |
           apk add --update
           apk add --no-cache ca-certificates git curl build-base python3 g++ make
-
-      - name: Setup node-gyp
-        run: |
-          npm -g install node-gyp@9.4.1
-          python3 -m pip install packaging
 
       - name: Checkout repository
         uses: actions/checkout@v3
