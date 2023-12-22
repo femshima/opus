@@ -4,13 +4,13 @@ on:
     types: [published]
 jobs:
 
-  build_x86_64:
-    name: Prebuild x86_64
+  build_x86_64_mac_win:
+    name: Prebuild x86_64 for Mac and Windows
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-11, macos-12, macos-13, ubuntu-20.04, ubuntu-22.04, windows-2019]
+        os: [macos-11, macos-12, macos-13, windows-2019]
         node: [18, 20, 21]
     steps:
       - name: Checkout repository
@@ -24,6 +24,33 @@ jobs:
       - name: Update npm
         run: |
           npm i -g npm@latest
+
+      - name: Install dependencies
+        run: npm install --build-from-source
+
+      - name: Package prebuild
+        run: npm run build
+
+      - name: Upload prebuild asset
+        uses: icrawl/action-artifact@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          path: 'build/stage/**/*.tar.gz'
+
+  build_x86_64:
+    name: Prebuild x86_64
+    runs-on: ubuntu-latest
+    container:
+      image: node:${{ matrix.node }}-${{ matrix.debian }}
+    strategy:
+      fail-fast: false
+      matrix:
+        debian: [bullseye, bookworm]
+        node: [18, 20, 21]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Install dependencies
         run: npm install --build-from-source
@@ -71,20 +98,17 @@ jobs:
 
   build_aarch64:
     name: Prebuild aarch64
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
+    container:
+      image: node:${{ matrix.node }}-${{ matrix.debian }}
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-20.04, ubuntu-22.04]
+        debian: [bullseye, bookworm]
         node: [18, 20, 21]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      - name: Install Node v${{ matrix.node }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node }}
 
       - name: Install dependencies
         run: npm install --build-from-source
