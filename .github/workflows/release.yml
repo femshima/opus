@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-11, macos-12, macos-13, windows-2019]
+        os: [macos-12, macos-13, windows-2019]
         node: [18, 20, 21]
     steps:
       - name: Checkout repository
